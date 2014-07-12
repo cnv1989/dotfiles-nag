@@ -1,0 +1,14 @@
+[user]
+	name = Nag Varun Chunduru
+	email = nchunduru@hearsaycorp.com
+	initials = cnv
+[core]
+	editor = vim
+[merge]
+	tool = opendiff
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+[color]
+	ui = true
