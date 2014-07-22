@@ -10,8 +10,8 @@ DOTFILES = ('.gitconfig', '.bashrc', '.bash_profile', '.bash', '.vimrc', '.vim',
 def dotfiles():
     logging.info('Installing dotfiles...')
     for dotfile in DOTFILES:
-        filepath = '%s/dotfiles/%s' % (HOME, dotfile-nag)
-        linkpath = '%s/%s' % (HOME, dotfile-nag)
+        filepath = '%s/dotfiles/%s' % (HOME, dotfile)
+        linkpath = '%s/%s' % (HOME, dotfile)
         cmd_output = local('rm -rf %s' % linkpath, capture=True)
         logging.debug(cmd_output)
         os.symlink(filepath, linkpath)
