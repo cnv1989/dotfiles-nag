@@ -88,8 +88,8 @@ alias du='du -h' # Disk usage
 alias h='history' # Bash history
 alias j='jobs -l' # Current running jobs
 
-shopt -s autocd
+#shopt -s autocd
 shopt -s cdspell
-shopt -s dirspell
+#shopt -s dirspell
 
 alias djtest="./run.sh manage.py test"
