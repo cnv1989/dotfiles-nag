@@ -69,7 +69,8 @@ alias gd='git diff'
 alias go='git checkout '
 alias gk='gitk --all&'
 alias gx='gitx --all'
-
+alias gtfo="git push origin head --force"
+alias rtfb="git fetch upstream && git rebase upstream/master"
 #mysql
 export PATH=$PATH:~/local_bin
 
@@ -87,7 +88,8 @@ alias du='du -h' # Disk usage
 alias h='history' # Bash history
 alias j='jobs -l' # Current running jobs
 
-# shopt -s autocd
-# shopt -s cdspell
-# shopt -s dirspell
+shopt -s autocd
+shopt -s cdspell
+shopt -s dirspell
 
+alias djtest="./run.sh manage.py test"
