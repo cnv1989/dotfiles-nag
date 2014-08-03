@@ -85,8 +85,12 @@ alias du='du -h' # Disk usage
 alias h='history' # Bash history
 alias j='jobs -l' # Current running jobs
 
-shopt -s autocd
-shopt -s cdspell
-shopt -s dirspell
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	shopt -s autocd
+	shopt -s cdspell
+	shopt -s dirspell
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	shopt -s cdspell
+fi
 
 alias djtest="~/projects/HearsayLabs/fanmgmt/run.sh manage.py test"
