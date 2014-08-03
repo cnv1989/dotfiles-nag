@@ -93,4 +93,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	shopt -s cdspell
 fi
 
-alias djtest="~/projects/HearsayLabs/fanmgmt/run.sh manage.py test"
+alias djtest="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test"
