@@ -78,10 +78,7 @@ export PATH=$PATH:~/local_bin
 alias remake='make clean; make'
 alias mkrun='make clean; make; make run'
 
-# ———————————————–
 # General
-# ———————————————–
-
 alias c='clear' # Clear the screen
 alias df='df -Th' # Disk free space
 alias du='du -h' # Disk usage
@@ -92,4 +89,4 @@ shopt -s autocd
 shopt -s cdspell
 shopt -s dirspell
 
-alias djtest="./run.sh manage.py test"
+alias djtest="~/projects/HearsayLabs/fanmgmt/run.sh manage.py test"
