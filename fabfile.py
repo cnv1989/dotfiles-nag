@@ -3,7 +3,7 @@ import logging
 from fabric.api import local, task
 
 HOME = os.path.expanduser('~')
-DOTFILES = ('.gitconfig', '.bashrc', '.bash_profile', '.bash', '.vimrc', '.vim',)
+DOTFILES = ('.gitconfig', '.bash_profile', '.bash', '.vimrc', '.vim',)
 
 @task
 def dotfiles():
