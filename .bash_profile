@@ -71,6 +71,7 @@ alias gk='gitk --all&'
 alias gx='gitx --all'
 alias gtfo="git push origin HEAD --force"
 alias rtfb="git fetch upstream && git rebase upstream/master"
+alias gdfs="git diff upstream/master --name-only"
 #mysql
 export PATH=$PATH:~/local_bin
 
