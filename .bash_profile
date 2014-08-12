@@ -95,3 +95,4 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 alias djtest="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test"
+alias djshell="echo 'Changing dir to $FANMGMT' && fanmgmt && ./run.sh manage.py shell --organization=1"
