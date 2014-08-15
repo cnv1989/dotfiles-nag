@@ -42,6 +42,7 @@ alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
 
 # LS Alias
+alias ls='ls --color=always'
 alias l="ls"
 alias la="ls -a"
 alias ll="ls -l"
