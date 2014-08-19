@@ -151,3 +151,6 @@ alias cbhs="cat $HISTFILE | tail -n 1 | cb"
 # Configuration for ~/.bash_profile, ~/.zshrc etc:
 # Pipe anything into `clip` to forward it to Clipper
 alias clip="nc localhost 8377"
+
+# tmux 
+alias t='tmux'
