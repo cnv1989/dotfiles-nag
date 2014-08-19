@@ -96,3 +96,7 @@ fi
 
 alias djtest="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test"
 alias djshell="echo 'Changing dir to $FANMGMT' && fanmgmt && ./run.sh manage.py shell --organization=1"
+
+# Configuration for ~/.bash_profile, ~/.zshrc etc:
+# Pipe anything into `clip` to forward it to Clipper
+alias clip="nc localhost 8377"

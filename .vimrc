@@ -15,7 +15,6 @@ function! NumberToggle()
 		set number
 	else
 		set relativenumber
-	
 	endif
 endfunc
 "split up
@@ -40,3 +39,7 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 " Make backspace work
 set backspace=indent,eol,start
+
+"Configuration for ~/.vimrc:
+"Bind <leader>y to forward last-yanked text to Clipper
+nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
