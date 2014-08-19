@@ -154,3 +154,4 @@ alias clip="nc localhost 8377"
 
 # tmux 
 alias t='tmux'
+
