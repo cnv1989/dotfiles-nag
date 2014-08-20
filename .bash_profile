@@ -11,6 +11,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
 source ~/.bash/git-completion.bash
+source ~/.bash/tmux.completion.bash
 
 alias sites="cd ~/Sites/"
 alias makers="sites && cd makers"
