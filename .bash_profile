@@ -157,3 +157,4 @@ alias clip="nc localhost 8377"
 # tmux 
 alias t='tmux'
 
+alias wrst='sudo service uwsgi restart'
