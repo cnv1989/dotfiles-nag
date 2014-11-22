@@ -7,7 +7,6 @@ HISTSIZE=1000000
 #export LSCOLORS=GxFxCxDxBxegedabagaced
 
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
 source ~/.bash/git-completion.bash
