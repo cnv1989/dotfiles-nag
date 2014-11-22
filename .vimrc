@@ -5,6 +5,8 @@ set number
 set nowrap
 set autoindent
 set cindent
+set hlsearch
+set autochdir
 vmap <C-c> "+y
 filetype plugin indent on
 set cursorline
@@ -43,3 +45,8 @@ set backspace=indent,eol,start
 "Configuration for ~/.vimrc:
 "Bind <leader>y to forward last-yanked text to Clipper
 nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
