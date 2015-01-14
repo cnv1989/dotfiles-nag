@@ -53,6 +53,8 @@ alias lk='ls -lSr' # Sort by size (small to big)
 alias lc='ls -ltcr' # Sort by change time (old to new)
 alias lu='ls -ltur' # Sort by change time (new to old)
 alias lt='ls -ltr' # Sort by date (old to new)
+alias ldf='ls -d -1 $PWD/**' # list directory with fullpath
+alias lf='ls -d -1 $PWD/*.*' # list files with fullpath.	
 
 # Hadoop stuff
 # export HADOOP_INSTALL=/Users/nchunduru/Documents/Apps/hadoop-1.2.1
