@@ -1,12 +1,14 @@
 syntax on
 let &t_Co=256
 let mapleader = "`" 
+set expandtab
 set number
 set nowrap
 set autoindent
 set cindent
 set hlsearch
 set autochdir
+set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 vmap <C-c> "+y
 filetype plugin indent on
 set cursorline
@@ -50,3 +52,4 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+set tags=~/tags
