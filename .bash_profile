@@ -159,3 +159,5 @@ alias clip="nc localhost 8377"
 alias t='tmux'
 alias wrst='sudo service uwsgi restart'
 
+# ctags
+alias update_tags='ctags -R -f ~/tags projects/'
