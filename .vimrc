@@ -13,19 +13,17 @@ Plugin 'terryma/vim-multiple-cursors'
 
 
 call vundle#end()            " required
-filetype plugin indent on    " require
 
 syntax on
 let &t_Co=256
 let mapleader = "`" 
-set expandtab
 set number
 set nowrap
 set autoindent
 set cindent
 set hlsearch
 set autochdir
-set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4
 vmap <C-c> "+y
 filetype plugin indent on
 set cursorline
@@ -50,6 +48,13 @@ nmap <silent> <leader><RIGHT> :wincmd l<CR>
 nmap <silent> <leader>v :vsplit<CR>
 "hsplit
 nmap <silent> <leader>h :split<CR>
+
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
 
 nnoremap <leader>t :TagbarToggle<CR>
 nnoremap <Leader>l :call NumberToggle()<cr>
