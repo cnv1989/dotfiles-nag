@@ -168,4 +168,42 @@ alias wrst='sudo service uwsgi restart'
 alias update_tags='ctags -R -f ~/tags projects/'
 
 # remote git aliases
+alias hs-labs="ssh nchunduru.dev.hearsaylabs.com \"cd ~/projects/HearsayLabs && $*\""
+alias hs-test="ssh nchunduru.dev.hearsaylabs.com \"echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test --settings=settings.nchunduru\""
 alias git-ssh="ssh nchunduru.dev.hearsaylabs.com \"cd ~/projects/HearsayLabs && git\""
+alias git-remote-diff="diff <(git diff upstream/master) <(git-ssh diff upstream/master)"
+alias grdiff="git-remote-diff"
+
+git-local-ssh() {
+    a=$*
+    echo "==========HS-LABS REMOTE============"
+    git-ssh $a
+    echo "===============LOCAL================"
+    git $a
+    echo "===================================="
+}
+
+git-local-ssh-co() {
+    a=$1
+    echo "==========HS-LABS REMOTE============"
+    git-ssh checkout -b remote_dev_$a
+    echo "===============LOCAL================"
+    git fetch upstream
+    git checkout -b local_$a
+    echo "===================================="
+}
+
+git-local-ssh-new-branch() {
+    a=$1
+    echo "==========HS-LABS REMOTE============"
+    git-ssh fetch upstream
+    git-ssh checkout upstream/master -b remote_dev_$a
+    echo "===============LOCAL================"
+    git fetch upstream
+    git checkout upstream/master -b local_$a
+    echo "===================================="
+}
+
+alias gls="git-local-ssh"
+alias glsb="git-local-ssh-new-branch"
+alias glsco="git-local-ssh-co"
