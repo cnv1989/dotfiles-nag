@@ -11,6 +11,12 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'terryma/vim-multiple-cursors'
 
+" check file change every 4 seconds ('CursorHold') and reload the buffer upon
+" detecting change
+set updatetime=1000
+set autoread                                                                                                                                                                                    
+au CursorHold * checktime
+au FocusGained * checktime
 
 call vundle#end()            " required
 
@@ -49,12 +55,8 @@ nmap <silent> <leader>v :vsplit<CR>
 "hsplit
 nmap <silent> <leader>h :split<CR>
 
+nnoremap <C-tab> :tabnext<CR>
 nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
 
 nnoremap <leader>t :TagbarToggle<CR>
 nnoremap <Leader>l :call NumberToggle()<cr>
@@ -75,3 +77,5 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 set tags=~/tags
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
