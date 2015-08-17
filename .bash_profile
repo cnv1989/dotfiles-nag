@@ -34,12 +34,23 @@ if [ "$PS1" ]; then
 	complete -cf sudo
 fi
 
+function mkdircd () { 
+    mkdir -p "$@" && eval cd "\"\$$#\"";
+}
+
 # Cool CD alias
 alias ..="cd .."
 alias ..2="cd ../.."
 alias ..3="cd ../../.."
 alias ..4="cd ../../../.."
 alias ..5="cd ../../../../.."
+
+alias up="cd .."
+alias cd1="cd .."
+alias cd2="cd ../.."
+alias cd3="cd ../../.."
+alias cd4="cd ../../../.."
+alias cd5="cd ../../../../.."
 
 # LS Alias
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -71,7 +82,7 @@ alias ga='git add '
 alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
-alias go='git checkout '
+alias gco='git checkout '
 alias gk='gitk --all&'
 alias gx='gitx --all'
 alias gtfo="git push origin HEAD --force"
