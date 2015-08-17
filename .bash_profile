@@ -5,7 +5,7 @@ HISTSIZE=1000000
 #export CLICOLOR=1
 
 #export LSCOLORS=GxFxCxDxBxegedabagaced
-
+export PYTHONSTARTUP=$HOME/.pystartup
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 source /usr/local/bin/virtualenvwrapper.sh
@@ -112,13 +112,14 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	shopt -s cdspell
 fi
 
+alias lgtm="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/lgtm"
 alias djtest="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test --settings=settings.nchunduru"
 alias djshell="echo 'Changing dir to $FANMGMT' && fanmgmt && ./run.sh manage.py shell --organization=1"
 alias djsel_all="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser={ie|firefox|chrome}"
 alias djsel_ie="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser=ie"
 alias djsel_chrome="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser=chrome"
 alias djasmine="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh run_jasmine.py"
-
+alias start_ipnb="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py shell_plus --settings=settings.nchunduru --notebook"
 
 # A shortcut function that simplifies usage of xclip.
 # - Accepts input from either stdin (pipe), or params.
