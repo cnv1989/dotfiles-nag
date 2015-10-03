@@ -90,6 +90,7 @@ alias rtfb="git fetch upstream && git rebase upstream/master"
 alias gdfs="git diff upstream/master --name-only"
 alias gdu="git diff upstream/master"
 alias branch="git fetch upstream && git checkout upstream/master -b"
+alias branchl="git for-each-ref --sort=-committerdate refs/heads/"
 #mysql
 export PATH=$PATH:~/local_bin
 
@@ -112,6 +113,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 	shopt -s cdspell
 fi
 
+alias rebuild_virtualenv="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/scripts/build_virtual_env.sh"
 alias lgtm="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/lgtm"
 alias djtest="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test --settings=settings.nchunduru"
 alias djshell="echo 'Changing dir to $FANMGMT' && fanmgmt && ./run.sh manage.py shell --organization=1"
@@ -219,3 +221,4 @@ git-local-ssh-new-branch() {
 alias gls="git-local-ssh"
 alias glsb="git-local-ssh-new-branch"
 alias glsco="git-local-ssh-co"
+alias gbcl="~/dotfiles-nag/git-branch-cleanup"
