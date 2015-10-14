@@ -178,9 +178,6 @@ alias clip="nc localhost 8377"
 alias t='tmux'
 alias wrst='sudo service uwsgi restart'
 
-# ctags
-alias update_tags='ctags -R -f ~/tags projects/'
-
 # remote git aliases
 alias hs-labs="ssh nchunduru.dev.hearsaylabs.com \"cd ~/projects/HearsayLabs && $*\""
 alias hs-test="ssh nchunduru.dev.hearsaylabs.com \"echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test --settings=settings.nchunduru\""
