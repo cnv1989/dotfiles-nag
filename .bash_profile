@@ -20,7 +20,8 @@ alias downloads="cd ~/Downloads/"
 alias dropbox="cd ~/Dropbox/"
 alias desktop="cd ~/Desktop/"
 alias fanmgmt="cd $FANMGMT"
-
+alias poly="~/projects/project-poly"
+alias libpoly="~/projects/libpoly"
 # SSH aliases
 alias hsdev="ssh nchunduru.dev.hearsaylabs.com"
 alias hsops="ssh ops.prod.pnw.hearsaylabs.com"
@@ -72,7 +73,7 @@ alias lf='ls -d -1 $PWD/*.*' # list files with fullpath.
 # Git branch in prompt
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source $GITAWAREPROMPT/main.sh
-export PS1="\h|\W\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]:\u\$ "
+export PS1="\W\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]:\u\$ "
 
 # Git aliases
 alias gs='git status '
@@ -105,15 +106,14 @@ alias h='history' # Bash history
 alias j='jobs -l' # Current running jobs
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	shopt -s autocd
-	shopt -s cdspell
-	shopt -s dirspell
+       shopt -s autocd
+       shopt -s cdspell
+       shopt -s dirspell
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	shopt -s cdspell
+       shopt -s cdspell
 fi
 
 alias rebuild_virtualenv="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/scripts/build_virtual_env.sh"
-alias lgtm="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/lgtm"
 alias djtest="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test --settings=settings.nchunduru"
 alias djshell="echo 'Changing dir to $FANMGMT' && fanmgmt && ./run.sh manage.py shell --organization=1"
 alias djsel_all="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser={ie|firefox|chrome}"
@@ -207,7 +207,7 @@ git-local-ssh-new-branch() {
     a=$1
     echo "==========HS-LABS REMOTE============"
     git-ssh fetch upstream
-    git-ssh checkout upstream/master -b remote_dev_$a
+    git-ssh checkout upstream/master -b remote_$a
     echo "===============LOCAL================"
     git fetch upstream
     git checkout upstream/master -b local_$a
@@ -264,4 +264,3 @@ export PATH="/Users/nchunduru/anaconda2/bin:$PATH"
 
 # added by Anaconda3 4.1.1 installer
 export PATH="/Users/nchunduru/anaconda3/bin:$PATH"
-
