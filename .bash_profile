@@ -5,10 +5,8 @@ HISTSIZE=1000000
 #export CLICOLOR=1
 
 #export LSCOLORS=GxFxCxDxBxegedabagaced
+export MATLAB_EXECUTABLE=/Applications/MATLAB_R2015b.app/bin/matlab
 export PYTHONSTARTUP=$HOME/.pystartup
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-source /usr/local/bin/virtualenvwrapper.sh
 source ~/.bash/git-completion.bash
 source ~/.bash/tmux.completion.bash
 
@@ -91,6 +89,7 @@ alias gdfs="git diff upstream/master --name-only"
 alias gdu="git diff upstream/master"
 alias branch="git fetch upstream && git checkout upstream/master -b"
 alias branchl="git for-each-ref --sort=-committerdate refs/heads/"
+alias all_branches="git branch | grep -v \* | xargs"
 #mysql
 export PATH=$PATH:~/local_bin
 
@@ -219,3 +218,43 @@ alias gls="git-local-ssh"
 alias glsb="git-local-ssh-new-branch"
 alias glsco="git-local-ssh-co"
 alias gbcl="~/dotfiles-nag/git-branch-cleanup"
+
+rebase() {
+    git fetch $1 && git rebase $1/$2
+}
+# Setting PATH for Python 2.7
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH
+
+# Setting PATH for Python 3.5
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
+
+# Setting PATH for Python 2.7
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH
+
+# Setting PATH for Python 3.5
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# added by Anaconda3 4.0.0 installer
+export PATH="/Users/nchunduru/anaconda/bin:$PATH"
+
+# Setting PATH for Python 2.7
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH
+
+# added by Anaconda2 4.1.1 installer
+export PATH="/Users/nchunduru/anaconda2/bin:$PATH"
+
+# added by Anaconda3 4.1.1 installer
+export PATH="/Users/nchunduru/anaconda3/bin:$PATH"
+
