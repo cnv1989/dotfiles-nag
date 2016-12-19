@@ -1,10 +1,43 @@
 set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rking/ag.vim'
+" plugin from http://vim-scripts.org/vim/scripts.html
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 set clipboard=unnamed
 filetype off 
 syntax on
 let &t_Co=256
 let mapleader = "`" 
 set number
+set paste
 set nowrap
 set autoindent
 set cindent
@@ -28,9 +61,10 @@ nmap <silent> <leader><RIGHT> :wincmd l<CR>
 nmap <silent> <leader>v :vsplit<CR>
 "hsplit
 nmap <silent> <leader>h :split<CR>
-
-nnoremap <C-tab> :tabnext<CR>
-nnoremap <C-S-tab> :tabprevious<CR>
+nmap <silent> <leader>] :tabnext<CR>
+nmap <silent> <leader>[ :tabprev<CR>
+nnoremap <C-t> :tabnew<CR>
+inoremap <C-t> <Esc>:tabnew<CR>
 
 nnoremap <leader>t :TagbarToggle<CR>
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -52,3 +86,8 @@ nnoremap <C-H> <C-W><C-H>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ycm_min_num_of_chars_for_completion = 1
+
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeGlyphReadOnly = 0

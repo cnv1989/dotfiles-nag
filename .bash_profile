@@ -229,6 +229,18 @@ rebase() {
     fi
     git fetch $1 && git rebase $1/$branch_name
 }
+
+ctail() {
+    COLORS=("\e[49m" "\e[40m" "\e[41m" "\e[42m" "\e[43m" "\e[44m" "\e[45m" "\e[46m" "\e[47m" "\e[100m" "\e[101m" "\e[102m" "\e[103m" "\e[104m" "\e[105m" "\e[106m" "\e[107m")
+    AWK_CMD=''
+    for (( i=3; i<=$#; i++))
+    do
+        CURR_AWK="/${!i}/ {print \"${COLORS[$i]}\" \$0 \"${COLORS[$i]}\"}"
+        AWK_CMD="$AWK_CMD $CURR_AWK"
+    done
+    tail -f $2 | awk '$AWK_CMD'
+}
+
 # Setting PATH for Python 2.7
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
