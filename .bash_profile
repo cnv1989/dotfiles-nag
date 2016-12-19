@@ -217,10 +217,17 @@ git-local-ssh-new-branch() {
 alias gls="git-local-ssh"
 alias glsb="git-local-ssh-new-branch"
 alias glsco="git-local-ssh-co"
-alias gbcl="~/dotfiles-nag/git-branch-cleanup"
+
+git-clean() {
+    for b in `git branch --merged | grep -v \*`; do git branch -D $b; done
+}
 
 rebase() {
-    git fetch $1 && git rebase $1/$2
+    branch_name=$2
+    if [ -z "$2" ]; then
+        branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+    fi
+    git fetch $1 && git rebase $1/$branch_name
 }
 # Setting PATH for Python 2.7
 # The orginal version is saved in .bash_profile.pysave
