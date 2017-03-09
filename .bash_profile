@@ -113,15 +113,70 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
        shopt -s cdspell
 fi
 
-alias rebuild_virtualenv="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/scripts/build_virtual_env.sh"
-alias djtest="echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test --settings=settings.nchunduru"
-alias djshell="echo 'Changing dir to $FANMGMT' && fanmgmt && ./run.sh manage.py shell --organization=1"
-alias djsel_all="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser={ie|firefox|chrome}"
-alias djsel_ie="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser=ie"
-alias djsel_chrome="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser=chrome"
-alias djasmine="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh run_jasmine.py"
-alias start_ipnb="echo -e 'Changing directory to $FANMGMT' && cd $FANMGMT && ./run.sh manage.py shell_plus --settings=settings.nchunduru --notebook"
+alias fmenv="fanmgmt && ~/projects/HearsayLabs/scripts/build_virtual_env.sh"
+alias fmselenium="fanmgmt && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser={ie|firefox|chrome}"
+alias fmjasmine="fangmt && ./run.sh run_jasmine.py"
+alias fmipnb="fanmgmt && ./run.sh manage.py shell_plus --settings=settings.nchunduru --notebook"
 
+pytest() {
+    current_path=$(pwd)
+    test_path=$1
+    
+    project=$(echo $1| cut -d'.' -f 1)
+
+    if [ -z $1 ]; then
+        $project="fanmgmt"
+    fi
+
+    if [ "$project" == "poly" ]; then
+        settings="poly.settings.test"
+    elif [ "$project" == "fanmgmt" ]; then
+        settings="settings.nchunduru"
+    fi
+
+    eval $project && .virtualenv/bin/python manage.py test --settings=$settings $test_path
+    eval "cd $current_path"
+}
+
+shell() {
+    current_path=$(pwd)
+    project=$1
+    org_id=$2
+    
+    if [ -z $1 ]; then
+        project="fanmgmt"
+    fi
+    
+    if [ -z $2 ]; then
+        org_id=1
+    fi
+
+    if [ "$project" == "poly" ]; then
+        settings="poly.settings.dev"
+    elif [ "$project" == "fanmgmt" ]; then
+        settings="settings.nchunduru"
+    fi
+    eval $project && .virtualenv/bin/python manage.py shell --organization=$org_id --settings=$settings
+    eval "cd $current_path"
+}
+
+celery() {
+    current_path=$(pwd)
+    project=$1
+    if [ -z $1 ]; then
+        project="fanmgmt"
+    fi
+	eval $project && make celery
+    eval "cd $current_path"
+}
+
+shell_plus() {
+    current_path=$(pwd)
+	poly && .virtualenv/bin/python manage.py shell_plus --settings=poly.settings.dev --notebook
+    eval "cd $current_path"
+}
+
+alias poly_test="poly && .virtualenv/bin/python manage.py test --settings=poly.settings.test"
 # A shortcut function that simplifies usage of xclip.
 # - Accepts input from either stdin (pipe), or params.
 # ------------------------------------------------
@@ -219,7 +274,7 @@ alias glsb="git-local-ssh-new-branch"
 alias glsco="git-local-ssh-co"
 
 git-clean() {
-    for b in `git branch --merged | grep -v \*`; do git branch -D $b; done
+    for b in `git branch | grep -v \*`; do git branch -D $b; done
 }
 
 rebase() {

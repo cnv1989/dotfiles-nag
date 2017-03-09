@@ -85,7 +85,8 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
-let g:ycm_min_num_of_chars_for_completion = 1
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_min_num_of_chars_for_completion = 2
 
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
