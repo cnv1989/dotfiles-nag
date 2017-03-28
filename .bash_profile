@@ -308,18 +308,19 @@ git-clr() {
 
 checkout() {
     branch_name=$1
-    if [ -z "$2" ]; then
-        echo "Missing branch name. Using master"
-        branch_name="master"
+    if [ -z "$1" ]; then
+        branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
     fi
+    git checkout -b temp_branch_during_checkout
     git branch -D $branch_name
     git fetch origin
     git checkout origin/$branch_name -b $branch_name
+    git branch -D temp_branch_during_checkout
 }
 
 clean-rebase() {
     git clean -fd && git reset --hard
-    rebase $1 $2
+    rebase origin $2
 }
 
 rebase() {
