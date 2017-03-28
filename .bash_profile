@@ -89,8 +89,33 @@ alias rtfb="git fetch upstream && git rebase upstream/master"
 alias gdfs="git diff upstream/master --name-only"
 alias gdu="git diff upstream/master"
 alias branch="git fetch upstream && git checkout upstream/master -b"
-alias branchl="git for-each-ref --sort=-committerdate refs/heads/"
-alias all_branches="git branch | grep -v \* | xargs"
+alias sorted_branches="git for-each-ref --sort=-committerdate refs/heads/"
+alias br="git branch | grep -v \* | tr -d ' '"
+
+branches() {
+    number_of_branches=$1
+
+    if [ -z $1 ]; then
+        number_of_branches=5
+    fi
+    IFS=$'\n'
+
+    for br in $(sorted_branches | head -n $number_of_branches)
+    do
+        commit=$(echo $br | cut -d' ' -f 1)
+        branch=$(echo $br | cut -d'/' -f 3)
+        printf '%s\t%s\n' "$commit $branch"
+    done
+}
+
+delete() {
+    branch_name=$1
+    echo "Deleting $branch from Remote"
+    eval "git push origin --delete $branch_name"
+    echo "Deleting $branch from Local"
+    eval "git branch -D $branch_name"
+}
+
 #mysql
 export PATH=$PATH:~/local_bin
 
