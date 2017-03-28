@@ -302,12 +302,44 @@ git-clean() {
     for b in `git branch | grep -v \*`; do git branch -D $b; done
 }
 
+git-clr() {
+    git clean -fd && git reset --hard
+}
+
+checkout() {
+    branch_name=$1
+    if [ -z "$2" ]; then
+        echo "Missing branch name. Using master"
+        branch_name="master"
+    fi
+    git branch -D $branch_name
+    git fetch origin
+    git checkout origin/$branch_name -b $branch_name
+}
+
+clean-rebase() {
+    git clean -fd && git reset --hard
+    rebase $1 $2
+}
+
 rebase() {
     branch_name=$2
     if [ -z "$2" ]; then
         branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
     fi
     git fetch $1 && git rebase $1/$branch_name
+}
+
+notebook() {
+    browser=$1
+    if [ -z "$1" ]; then
+        browser="Opera"
+    fi
+    port=8888
+    while lsof -Pi :$port -sTCP:LISTEN -t >/dev/null; do
+        port=$(($port + 1))
+    done
+    $(jupyter notebook --port $port --no-browser) | $(sleep 2s && open -a $browser http://localhost:$port?token=abc)
 }
 
 ctail() {
@@ -331,28 +363,7 @@ export PATH
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
 
-# Setting PATH for Python 2.7
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH
-
-# Setting PATH for Python 3.5
-# The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
-
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-# added by Anaconda3 4.0.0 installer
+# added by Anaconda3 4.3.1 installer
 export PATH="/Users/nchunduru/anaconda/bin:$PATH"
-
-# Setting PATH for Python 2.7
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH
-
-# added by Anaconda2 4.1.1 installer
-export PATH="/Users/nchunduru/anaconda2/bin:$PATH"
-
-# added by Anaconda3 4.1.1 installer
-export PATH="/Users/nchunduru/anaconda3/bin:$PATH"
