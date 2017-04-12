@@ -76,13 +76,16 @@ export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source $GITAWAREPROMPT/main.sh
 
 function git_prompt_branch() {
-    br_len=$(expr ${#git_branch} - 1)
-    br_name="$(echo "$git_branch"| cut -c2-$br_len)"
-    if [ $br_len -gt 10 ]; then
-        br_name="$(echo "$br_name" | cut -c1-10)..."
+    if [ ${#git_branch} -gt 10 ]; then
+        br_len=$(expr ${#git_branch} - 1)
+        br_name="$(echo "$git_branch"| cut -c2-$br_len)"
+        if [ $br_len -gt 10 ]; then
+            br_name="$(echo "$br_name" | cut -c1-10)..."
+        fi
+        echo "($br_name)"
+    else
+        echo "$git_branch"
     fi
-    
-    echo "($br_name)"
 }
 
 
