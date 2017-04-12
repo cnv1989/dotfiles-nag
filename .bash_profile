@@ -71,9 +71,24 @@ alias lf='ls -d -1 $PWD/*.*' # list files with fullpath.
 # export PATH=$PATH:$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin
 
 # Git branch in prompt
+export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source $GITAWAREPROMPT/main.sh
-export PS1="\W\[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]:\u\$ "
+
+function git_prompt_branch() {
+    br_len=$(expr ${#git_branch} - 1)
+    br_name="$(echo "$git_branch"| cut -c2-$br_len)"
+    if [ $br_len -gt 10 ]; then
+        br_name="$(echo "$br_name" | cut -c1-10)..."
+    fi
+    
+    echo "($br_name)"
+}
+
+
+export PS1="\W\[$txtcyn\]\$(git_prompt_branch)\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+
+
 
 # Git aliases
 alias gs='git status '
@@ -320,7 +335,7 @@ checkout() {
 
 clean-rebase() {
     git clean -fd && git reset --hard
-    rebase origin $2
+    rebase origin $1
 }
 
 rebase() {
@@ -368,3 +383,7 @@ export PATH
 
 # added by Anaconda3 4.3.1 installer
 export PATH="/Users/nchunduru/anaconda/bin:$PATH"
+
+# virtualenv
+export WORKON_HOME=~/virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
