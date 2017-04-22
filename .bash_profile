@@ -325,14 +325,20 @@ git-clr() {
 }
 
 checkout() {
+    git-clr
     branch_name=$1
+    remote=$2
     if [ -z "$1" ]; then
         branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
     fi
+
+    if [ -z "$2" ]; then
+        remote="origin"
+    fi
     git checkout -b temp_branch_during_checkout
     git branch -D $branch_name
-    git fetch origin
-    git checkout origin/$branch_name -b $branch_name
+    git fetch $remote
+    git checkout $remote/$branch_name -b $branch_name
     git branch -D temp_branch_during_checkout
 }
 
@@ -358,7 +364,7 @@ notebook() {
     while lsof -Pi :$port -sTCP:LISTEN -t >/dev/null; do
         port=$(($port + 1))
     done
-    $(jupyter notebook --port $port --no-browser) | $(sleep 2s && open -a $browser http://localhost:$port?token=abc)
+    $(jupyter notebook --port $port --no-browser)
 }
 
 ctail() {
