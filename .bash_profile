@@ -106,7 +106,6 @@ alias gtfo="git push origin HEAD --force"
 alias rtfb="git fetch upstream && git rebase upstream/master"
 alias gdfs="git diff upstream/master --name-only"
 alias gdu="git diff upstream/master"
-alias branch="git fetch upstream && git checkout upstream/master -b"
 alias sorted_branches="git for-each-ref --sort=-committerdate refs/heads/"
 alias br="git branch | grep -v \* | tr -d ' '"
 alias curr_br="git branch | grep '*' | cut -c 3-"
@@ -354,6 +353,19 @@ rebase() {
         branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
     fi
     git fetch $1 && git rebase $1/$branch_name
+}
+
+branch() {
+    branch_name=$1
+    new_branch_name=$2
+    if [ -z "$1" ]; then
+        branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+    fi
+
+    if [ -z "$2" ]; then
+        new_branch_name=$branch_name
+    fi
+    git fetch upstream && git checkout upstream/$branch_name -b $new_branch_name
 }
 
 notebook() {
