@@ -26,7 +26,6 @@ alias libpoly="~/projects/libpoly"
 alias hsdev="ssh nchunduru.dev.hearsaylabs.com"
 alias hsops="ssh ops.prod.pnw.hearsaylabs.com"
 
-alias mkve3='mkvirtualenv --no-site-packages --python=/usr/local/Cellar/python3/3.4.1/bin/python3.4'
 alias tmux="TERM=screen-256color-bce tmux"
 
 if [ "$PS1" ]; then
