@@ -5,10 +5,12 @@ from fabric.api import local, task
 HOME = os.path.expanduser('~')
 DOTFILES = ('.gitconfig', '.bash_profile', '.bash', '.vimrc', '.inputrc', '.tmux.conf')
 CMDS = (
+    'source ~/.bash_profile',
+    'vim +PluginInstall +qall',
     'mkdir -p ~/.vim/bundle/',
     'git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim',
     'sudo apt-get install tig',
-    'gem install tmuxinator'
+    'sudo gem install tmuxinator'
 )
 
 @task
