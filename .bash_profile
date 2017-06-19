@@ -109,6 +109,7 @@ alias gdu="git diff upstream/master"
 alias branch="git fetch upstream && git checkout upstream/master -b"
 alias sorted_branches="git for-each-ref --sort=-committerdate refs/heads/"
 alias br="git branch | grep -v \* | tr -d ' '"
+alias curr_br="git branch | grep '*' | cut -c 3-"
 
 branches() {
     number_of_branches=$1
@@ -396,3 +397,6 @@ export PATH="/Users/nchunduru/anaconda/bin:$PATH"
 # virtualenv
 export WORKON_HOME=~/virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
+
+# tmuxinator
+export EDITOR=vim
