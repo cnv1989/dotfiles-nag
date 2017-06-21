@@ -407,7 +407,11 @@ export PATH="/Users/nchunduru/anaconda/bin:$PATH"
 
 # virtualenv
 export WORKON_HOME=~/virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+if [ "$HOSTNAME" = "nchunduru.local"  ]; then
+    source ~/anaconda/bin/virtualenvwrapper.sh
+else
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 # tmuxinator
 export EDITOR=vim
