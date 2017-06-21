@@ -9,8 +9,9 @@ CMDS = (
     'vim +PluginInstall +qall',
     'mkdir -p ~/.vim/bundle/',
     'git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim',
-    'sudo apt-get install tig',
     'sudo gem install tmuxinator'
+    'sudo apt-get install tig',
+    'sudo apt-get install tmuxinator'
 )
 
 @task
