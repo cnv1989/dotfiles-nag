@@ -162,23 +162,28 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
        shopt -s cdspell
 fi
 
+alias pytest-public="POLYAPP=PUBLIC pytest"
+
 pytest() {
     current_path=$(pwd)
     test_path=$1
+    run_cmd=".virtualenv/bin/python"
     
     project=$(echo $1| cut -d'.' -f 1)
 
     if [ -z $1 ]; then
-        $project="fanmgmt"
+        project="fanmgmt"
     fi
 
     if [ "$project" == "poly" ]; then
+        run_cmd=".virtualenv/bin/python"
         settings="poly.settings.test"
     elif [ "$project" == "fanmgmt" ]; then
+        run_cmd="./run.sh"
         settings="settings.nchunduru"
     fi
 
-    eval $project && .virtualenv/bin/python manage.py test --settings=$settings $test_path
+    eval $project && $run_cmd manage.py test --settings=$settings $test_path
     eval "cd $current_path"
 }
 
