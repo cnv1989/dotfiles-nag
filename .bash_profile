@@ -13,15 +13,22 @@ source ~/.bash/tmux.completion.bash
 alias sites="cd ~/Sites/"
 alias makers="sites && cd makers"
 
-export FANMGMT="~/projects/HearsayLabs/fanmgmt/"
+
+if [ "$HOSTNAME" = "nchunduru.local"  ]; then
+    export PROJECT_DIR="~/RemoteDev"
+else
+    export PROJECT_DIR="~/projects"
+fi
+
+export FANMGMT="$PROJECT_DIR/HearsayLabs/fanmgmt/"
 
 alias docs="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
 alias dropbox="cd ~/Dropbox/"
 alias desktop="cd ~/Desktop/"
 alias fanmgmt="cd $FANMGMT"
-alias poly="~/projects/project-poly"
-alias libpoly="~/projects/libpoly"
+alias poly="cd $PROJECT_DIR/project-poly"
+alias libpoly="cd $PROJECT_DIR/libpoly"
 # SSH aliases
 alias hsdev="ssh nchunduru.dev.hearsaylabs.com"
 alias hsops="ssh ops.prod.pnw.hearsaylabs.com"
@@ -155,11 +162,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
        shopt -s cdspell
 fi
 
-alias fmenv="fanmgmt && ~/projects/HearsayLabs/scripts/build_virtual_env.sh"
-alias fmselenium="fanmgmt && ./run.sh manage.py selenium_test --settings=settings.jenkins --remote --browser={ie|firefox|chrome}"
-alias fmjasmine="fangmt && ./run.sh run_jasmine.py"
-alias fmipnb="fanmgmt && ./run.sh manage.py shell_plus --settings=settings.nchunduru --notebook"
-
 pytest() {
     current_path=$(pwd)
     test_path=$1
@@ -273,47 +275,6 @@ alias clip="nc localhost 8377"
 # tmux 
 alias t='tmux'
 alias wrst='sudo service uwsgi restart'
-
-# remote git aliases
-alias hs-labs="ssh nchunduru.dev.hearsaylabs.com \"cd ~/projects/HearsayLabs && $*\""
-alias hs-test="ssh nchunduru.dev.hearsaylabs.com \"echo -e 'Changing Directory to $FANMGMT' && cd $FANMGMT && ~/projects/HearsayLabs/fanmgmt/run.sh manage.py test --settings=settings.nchunduru\""
-alias git-ssh="ssh nchunduru.dev.hearsaylabs.com \"cd ~/projects/HearsayLabs && git\""
-alias git-remote-diff="diff <(git diff upstream/master) <(git-ssh diff upstream/master)"
-alias grdiff="git-remote-diff"
-
-git-local-ssh() {
-    a=$*
-    echo "==========HS-LABS REMOTE============"
-    git-ssh $a
-    echo "===============LOCAL================"
-    git $a
-    echo "===================================="
-}
-
-git-local-ssh-co() {
-    a=$1
-    echo "==========HS-LABS REMOTE============"
-    git-ssh checkout -b remote_dev_$a
-    echo "===============LOCAL================"
-    git fetch upstream
-    git checkout -b local_$a
-    echo "===================================="
-}
-
-git-local-ssh-new-branch() {
-    a=$1
-    echo "==========HS-LABS REMOTE============"
-    git-ssh fetch upstream
-    git-ssh checkout upstream/master -b remote_$a
-    echo "===============LOCAL================"
-    git fetch upstream
-    git checkout upstream/master -b local_$a
-    echo "===================================="
-}
-
-alias gls="git-local-ssh"
-alias glsb="git-local-ssh-new-branch"
-alias glsco="git-local-ssh-co"
 
 git-clean() {
     for b in `git branch | grep -v \*`; do git branch -D $b; done
