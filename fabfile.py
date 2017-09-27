@@ -1,5 +1,6 @@
 import os
 import logging
+import platform
 from fabric.api import local, task
 
 HOME = os.path.expanduser('~')
@@ -10,8 +11,16 @@ CMDS = (
     'mkdir -p ~/.vim/bundle/',
     'git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim',
     'sudo gem install tmuxinator'
+)
+
+MAC_CMDS = (
+)
+
+LINUX_CMDS = (
     'sudo apt-get install tig',
-    'sudo apt-get install tmuxinator'
+    'sudo apt-get install tmuxinator',
+    'sudo apt-get install build-essential cmake',
+    'sudo apt-get install python-dev python3-dev'
 )
 
 @task
@@ -27,3 +36,9 @@ def dotfiles():
 
     for cmd in CMDS:
         os.system(cmd)
+
+    os = platform.linux_distribution()
+
+    if os[0] == 'Ubuntu':
+        for cmd in LINUX_CMDS:
+            os.system(cmd)

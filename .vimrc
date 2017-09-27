@@ -11,6 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Plugins Start
 
+Plugin 'valloric/youcompleteme'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
