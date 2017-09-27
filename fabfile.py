@@ -37,8 +37,8 @@ def dotfiles():
     for cmd in CMDS:
         os.system(cmd)
 
-    os = platform.linux_distribution()
+    os_info = platform.linux_distribution()
 
-    if os[0] == 'Ubuntu':
+    if os_info[0] == 'Ubuntu':
         for cmd in LINUX_CMDS:
             os.system(cmd)
