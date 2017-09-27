@@ -14,6 +14,7 @@ CMDS = (
 )
 
 MAC_CMDS = (
+    'brew install tig'
 )
 
 LINUX_CMDS = (
