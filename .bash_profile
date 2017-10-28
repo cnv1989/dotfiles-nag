@@ -10,28 +10,10 @@ export PYTHONSTARTUP=$HOME/.pystartup
 source ~/.bash/git-completion.bash
 source ~/.bash/tmux.completion.bash
 
-alias sites="cd ~/Sites/"
-alias makers="sites && cd makers"
-
-
-if [ "$HOSTNAME" = "nchunduru.local"  ]; then
-    export PROJECT_DIR="~/RemoteDev"
-else
-    export PROJECT_DIR="~/projects"
-fi
-
-export FANMGMT="$PROJECT_DIR/HearsayLabs/fanmgmt/"
-
 alias docs="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
 alias dropbox="cd ~/Dropbox/"
 alias desktop="cd ~/Desktop/"
-alias fanmgmt="cd $FANMGMT"
-alias poly="cd $PROJECT_DIR/project-poly"
-alias libpoly="cd $PROJECT_DIR/libpoly"
-# SSH aliases
-alias hsdev="ssh nchunduru.dev.hearsaylabs.com"
-alias hsops="ssh ops.prod.pnw.hearsaylabs.com"
 
 alias tmux="TERM=screen-256color-bce tmux"
 
@@ -162,70 +144,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
        shopt -s cdspell
 fi
 
-alias pytest-public="POLYAPP=PUBLIC pytest"
-
-pytest() {
-    current_path=$(pwd)
-    test_path=$1
-    run_cmd=".virtualenv/bin/python"
-    
-    project=$(echo $1| cut -d'.' -f 1)
-
-    if [ -z $1 ]; then
-        project="fanmgmt"
-    fi
-
-    if [ "$project" == "poly" ]; then
-        run_cmd=".virtualenv/bin/python"
-        settings="poly.settings.test"
-    elif [ "$project" == "fanmgmt" ]; then
-        run_cmd="./run.sh"
-        settings="settings.nchunduru"
-    fi
-
-    eval $project && $run_cmd manage.py test --settings=$settings $test_path
-    eval "cd $current_path"
-}
-
-shell() {
-    current_path=$(pwd)
-    project=$1
-    org_id=$2
-    
-    if [ -z $1 ]; then
-        project="fanmgmt"
-    fi
-    
-    if [ -z $2 ]; then
-        org_id=1
-    fi
-
-    if [ "$project" == "poly" ]; then
-        settings="poly.settings.dev"
-    elif [ "$project" == "fanmgmt" ]; then
-        settings="settings.nchunduru"
-    fi
-    eval $project && .virtualenv/bin/python manage.py shell --organization=$org_id --settings=$settings
-    eval "cd $current_path"
-}
-
-celery() {
-    current_path=$(pwd)
-    project=$1
-    if [ -z $1 ]; then
-        project="fanmgmt"
-    fi
-	eval $project && make celery
-    eval "cd $current_path"
-}
-
-shell_plus() {
-    current_path=$(pwd)
-	poly && .virtualenv/bin/python manage.py shell_plus --settings=poly.settings.dev --notebook
-    eval "cd $current_path"
-}
-
-alias poly_test="poly && .virtualenv/bin/python manage.py test --settings=poly.settings.test"
 # A shortcut function that simplifies usage of xclip.
 # - Accepts input from either stdin (pipe), or params.
 # ------------------------------------------------
@@ -371,13 +289,6 @@ export PATH
 # added by Anaconda3 4.3.1 installer
 export PATH="/Users/nchunduru/anaconda/bin:$PATH"
 
-# virtualenv
-export WORKON_HOME=~/virtualenvs
-if [ "$HOSTNAME" = "nchunduru.local"  ]; then
-    source ~/anaconda/bin/virtualenvwrapper.sh
-else
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
 
 # tmuxinator
 export EDITOR=vim
@@ -409,3 +320,7 @@ tailf-with-colors () {
 # iTerm
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
+
+
+# Amazon
+alias dev="ssh varunnag.aka.corp.amazon.com"
