@@ -324,3 +324,29 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Amazon
 alias dev="ssh varunnag.aka.corp.amazon.com"
+alias work="cd /workplace/varunnag"
+
+
+export BRAZIL_WORKSPACE_DEFAULT_LAYOUT=short
+
+for f in SDETools envImprovement AmazonAwsCli OdinTools; do
+    if [[ -d /apollo/env/$f ]]; then
+        export PATH=$PATH:/apollo/env/$f/bin
+    fi
+done
+
+alias e=emacs
+alias bb=brazil-build
+
+alias bba='brazil-build apollo-pkg'
+alias bre='brazil-runtime-exec'
+alias brc='brazil-recursive-cmd'
+alias bws='brazil ws'
+alias bwsuse='bws use --gitMode -p'
+alias bwscreate='bws create -n'
+alias brc=brazil-recursive-cmd
+alias bbr='brc brazil-build'
+alias bball='brc --allPackages'
+alias bbb='brc --allPackages brazil-build'
+alias bbra='bbr apollo-pkg'
+

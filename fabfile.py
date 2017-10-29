@@ -35,11 +35,11 @@ def dotfiles():
         os.symlink(filepath, linkpath)
         logging.info('Installed dotfile %s' % dotfile)
 
-    for cmd in CMDS:
-        os.system(cmd)
+    #for cmd in CMDS:
+    #    os.system(cmd)
 
-    os_info = platform.linux_distribution()
+    #os_info = platform.linux_distribution()
 
-    if os_info[0] == 'Ubuntu':
-        for cmd in LINUX_CMDS:
-            os.system(cmd)
+    #if os_info[0] == 'Ubuntu':
+    #    for cmd in LINUX_CMDS:
+    #        os.system(cmd)
