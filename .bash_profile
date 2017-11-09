@@ -324,6 +324,7 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Amazon
 alias dev="ssh varunnag.aka.corp.amazon.com"
+<<<<<<< HEAD
 alias work="cd /workplace/varunnag"
 
 
@@ -350,3 +351,39 @@ alias bball='brc --allPackages'
 alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
 
+
+# mkvirtualenv
+export VENV_DIRECTORY="~/.virtualenvs"
+
+mkvenv () {
+    if [ -z "$1" ]; then
+        virtualenv -h
+        return
+    fi
+
+    directory=$VENV_DIRECTORY/$1
+
+    if [ -d $directory ]; then
+        echo "virtualenv with the same name already exists"
+        return
+    fi
+
+    virtualenv $directory
+    source $directory/bin/activate 
+}
+
+workon () {
+    if [ -x "$1" ]; then
+        echo "Provide name of the environment"
+        return
+    fi
+    
+    directory=$VENV_DIRECTORY/$1
+
+    if [ ! -d $directory ]; then
+        echo "virtualenv doesn't exists"
+        return
+    fi
+
+    source $directory/bin/activate 
+}
