@@ -351,6 +351,7 @@ alias bball='brc --allPackages'
 alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
 
+<<<<<<< HEAD
 
 # mkvirtualenv
 export VENV_DIRECTORY="$HOME/.virtualenvs"
@@ -404,3 +405,7 @@ workon () {
 
     source $directory/bin/activate 
 }
+#
+PATH="$HOME/.node/bin:$PATH"
+NODE_PATH="$HOME/.node/lib/node_modules:$NODE_PATH"
+MANPATH="$HOME/.node/share/man:$MANPATH"

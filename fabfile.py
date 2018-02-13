@@ -35,8 +35,8 @@ def dotfiles():
         os.symlink(filepath, linkpath)
         logging.info('Installed dotfile %s' % dotfile)
 
-    #for cmd in CMDS:
-    #    os.system(cmd)
+    for cmd in CMDS:
+        os.system(cmd)
 
     #os_info = platform.linux_distribution()
 
