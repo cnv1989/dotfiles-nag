@@ -13,3 +13,6 @@
     ca = commit --amend
 [color]
 	ui = true
+[credential]
+	helper = !aws --profile jamatest1 codecommit credential-helper $@
+	UseHttpPath = true

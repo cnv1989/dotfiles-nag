@@ -353,7 +353,7 @@ alias bbra='bbr apollo-pkg'
 
 
 # mkvirtualenv
-export VENV_DIRECTORY="~/.virtualenvs"
+export VENV_DIRECTORY="$HOME/.virtualenvs"
 
 mkvenv () {
     if [ -z "$1" ]; then
@@ -369,6 +369,23 @@ mkvenv () {
     fi
 
     virtualenv $directory
+    source $directory/bin/activate 
+}
+
+mkvenv3 () {
+    if [ -z "$1" ]; then
+        virtualenv -h
+        return
+    fi
+
+    directory=$VENV_DIRECTORY/$1
+
+    if [ -d $directory ]; then
+        echo "virtualenv with the same name already exists"
+        return
+    fi
+
+    virtualenv -p python3 $directory
     source $directory/bin/activate 
 }
 
