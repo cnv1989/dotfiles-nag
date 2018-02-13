@@ -324,7 +324,6 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 # Amazon
 alias dev="ssh varunnag.aka.corp.amazon.com"
-<<<<<<< HEAD
 alias work="cd /workplace/varunnag"
 
 
@@ -350,8 +349,6 @@ alias bbr='brc brazil-build'
 alias bball='brc --allPackages'
 alias bbb='brc --allPackages brazil-build'
 alias bbra='bbr apollo-pkg'
-
-<<<<<<< HEAD
 
 # mkvirtualenv
 export VENV_DIRECTORY="$HOME/.virtualenvs"
