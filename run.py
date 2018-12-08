@@ -8,7 +8,7 @@ files = [
     ('git-branch-cleanup', 'git-branch-cleanup'),
     ('inputrc', '.inputrc'),
     ('tmux.conf', '.tmux.conf'),
-    ('vimrc', '.vimrc'),
+    ('vimrc', '.vimrc')
 ]
 
 CMDS = (
@@ -23,7 +23,7 @@ if __name__ == "__main__":
     for src, dst in files:
         src = os.path.abspath(src)
         dst = os.path.join(os.path.expanduser("~"), dst)
-        os.system('rm -rf ' + dst)
+        os.system('rm -rf {}'.format(dst))
         os.symlink(src, dst)
 
     for cmd in CMDS:
