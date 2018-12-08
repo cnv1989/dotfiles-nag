@@ -23,8 +23,7 @@ if __name__ == "__main__":
     for src, dst in files:
         src = os.path.abspath(src)
         dst = os.path.join(os.path.expanduser("~"), dst)
-        if os.path.exists(dst):
-            os.system('rm -rf {}'.format(dst))
+        os.system('rm -rf {}'.format(dst))
         os.symlink(src, dst)
 
     for cmd in CMDS:
