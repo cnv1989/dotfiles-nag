@@ -17,7 +17,6 @@ alias docs="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
 alias dropbox="cd ~/Dropbox/"
 alias desktop="cd ~/Desktop/"
-
 alias tmux="TERM=screen-256color-bce tmux"
 
 if [ "$PS1" ]; then
@@ -202,69 +201,6 @@ alias clip="nc localhost 8377"
 alias t='tmux'
 alias wrst='sudo service uwsgi restart'
 
-git-clean() {
-    for b in `git branch | grep -v \*`; do git branch -D $b; done
-}
-
-git-clr() {
-    git clean -fd && git reset --hard
-}
-
-checkout() {
-    git-clr
-    branch_name=$1
-    remote=$2
-    if [ -z "$1" ]; then
-        branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
-    fi
-
-    if [ -z "$2" ]; then
-        remote="origin"
-    fi
-    git checkout -b temp_branch_during_checkout
-    git branch -D $branch_name
-    git fetch $remote
-    git checkout $remote/$branch_name -b $branch_name
-    git branch -D temp_branch_during_checkout
-}
-
-clean-rebase() {
-    git clean -fd && git reset --hard
-    rebase origin $1
-}
-
-rebase() {
-    branch_name=$2
-    if [ -z "$2" ]; then
-        branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
-    fi
-    git fetch $1 && git rebase $1/$branch_name
-}
-
-branch() {
-    branch_name=$1
-    new_branch_name=$2
-    if [ -z "$1" ]; then
-        branch_name=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
-    fi
-
-    if [ -z "$2" ]; then
-        new_branch_name=$branch_name
-    fi
-    git fetch upstream && git checkout upstream/$branch_name -b $new_branch_name
-}
-
-notebook() {
-    browser=$1
-    if [ -z "$1" ]; then
-        browser="Opera"
-    fi
-    port=8888
-    while lsof -Pi :$port -sTCP:LISTEN -t >/dev/null; do
-        port=$(($port + 1))
-    done
-    $(jupyter notebook --port $port --no-browser)
-}
 
 ctail() {
     COLORS=("\e[49m" "\e[40m" "\e[41m" "\e[42m" "\e[43m" "\e[44m" "\e[45m" "\e[46m" "\e[47m" "\e[100m" "\e[101m" "\e[102m" "\e[103m" "\e[104m" "\e[105m" "\e[106m" "\e[107m")
@@ -342,18 +278,6 @@ done
 alias e=emacs
 alias bb=brazil-build
 
-alias bba='brazil-build apollo-pkg'
-alias bre='brazil-runtime-exec'
-alias brc='brazil-recursive-cmd'
-alias bws='brazil ws'
-alias bwsuse='bws use --gitMode -p'
-alias bwscreate='bws create -n'
-alias brc=brazil-recursive-cmd
-alias bbr='brc brazil-build'
-alias bball='brc --allPackages'
-alias bbb='brc --allPackages brazil-build'
-alias bbra='bbr apollo-pkg'
-
 # mkvirtualenv
 export VENV_DIRECTORY="$HOME/.virtualenvs"
 
@@ -424,4 +348,19 @@ add_alias() {
     echo $final_cmd >> $HOME/.bashrc
     source $HOME/.bashrc
 }
+
+
+# Dynamic aliases
+alias bba='brazil-build apollo-pkg'
+alias bre='brazil-runtime-exec'
+alias brc='brazil-recursive-cmd'
+alias bws='brazil ws'
+alias bwsuse='bws use --gitMode -p'
+alias bwscreate='bws create -n'
+alias brc=brazil-recursive-cmd
+alias bbr='brc brazil-build'
+alias bball='brc --allPackages'
+alias bbb='brc --allPackages brazil-build'
+alias bbra='bbr apollo-pkg'
+
 alias amz='cd /Users/varunnag/Documents/Amazon'
