@@ -13,13 +13,14 @@ done
 
 
 if [[ -e ${HOME}/.bash_profile ]]; then
-    echo "Remove the symlink ${HOME}/.bash_profile"
+    echo "Removing ${HOME}/.bash_profile"
     rm ${HOME}/.bash_profile
 fi
-
+echo "Creating ${HOME}/.bash_profile"
 touch ${HOME}/.bash_profile
 cat > ${HOME}/.bash_profile << EOM
-if [ -f ~/.bashrc ]; then
-    source ~/.bashrc
+if [ -f ${HOME}/.bashrc ]; then
+    source ${HOME}/.bashrc
 fi
 EOM
+source ${HOME}/.bashrc
