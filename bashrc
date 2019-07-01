@@ -410,3 +410,18 @@ workon () {
 PATH="$HOME/.node/bin:$PATH"
 NODE_PATH="$HOME/.node/lib/node_modules:$NODE_PATH"
 MANPATH="$HOME/.node/share/man:$MANPATH"
+
+
+alias resource="source $HOME/.bashrc"
+
+add_alias() {
+    echo -n "Alias: "
+    read ans
+    echo -n "Command: "
+    read cmd
+    final_cmd="alias $ans='$cmd'"
+    echo "Appending $final_cmd to $HOME/.bashrc"
+    echo $final_cmd >> $HOME/.bashrc
+    source $HOME/.bashrc
+}
+alias amz='cd /Users/varunnag/Documents/Amazon'
